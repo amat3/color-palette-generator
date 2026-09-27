@@ -1,0 +1,11 @@
+steps:
+  # Paso 1: Construir imagen Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest', '.']
+
+  # Paso 2: Pushear a Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest']
+
+images:
+  - 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest'

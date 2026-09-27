@@ -1,0 +1,17 @@
+# 1️⃣ Base: Node 20 lightweight
+FROM node:20-alpine
+
+# 2️⃣ Carpeta dentro del contenedor
+WORKDIR /app
+
+# 3️⃣ Copiar dependencias (sin node_modules)
+COPY package*.json ./
+
+# 4️⃣ Instalar dependencias
+RUN npm install
+
+# 5️⃣ Documentar que usa puerto 3000
+EXPOSE 3000
+
+# 6️⃣ Comando por defecto: dev con Next.js
+CMD ["npm", "run", "dev"]
