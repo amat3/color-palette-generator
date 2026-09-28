@@ -11,3 +11,6 @@ build/
 *.swp
 .turbo/
 out/
+.terraform/
+*.tfstate
+*.tfstate.backup

@@ -1,11 +1,30 @@
 steps:
-  # Paso 1: Construir imagen Docker
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest', '.']
+  # 1️⃣ Build (Cloud Build ya corre en amd64, sin --platform)
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - build
+      - -t
+      - europe-southwest1-docker.pkg.dev/$PROJECT_ID/color-palette-generator/color-palette-generator:$COMMIT_SHA
+      - .
 
-  # Paso 2: Pushear a Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest']
+  # 2️⃣ Push
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - push
+      - europe-southwest1-docker.pkg.dev/$PROJECT_ID/color-palette-generator/color-palette-generator:$COMMIT_SHA
+
+  # 3️⃣ Deploy a Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - color-palette-generator
+      - --image=europe-southwest1-docker.pkg.dev/$PROJECT_ID/color-palette-generator/color-palette-generator:$COMMIT_SHA
+      - --region=europe-southwest1
 
 images:
-  - 'europe-southwest1-docker.pkg.dev/143846294250/color-palette-generator/color-palette-generator:latest'
+  - europe-southwest1-docker.pkg.dev/$PROJECT_ID/color-palette-generator/color-palette-generator:$COMMIT_SHA
+
+options:
+  logging: CLOUD_LOGGING_ONLY
