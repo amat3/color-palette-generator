@@ -62,8 +62,7 @@ const Root = styled.main`
     width: 100%;
     height: 100%;
     gap: 1.5rem;
-    background: #2A7B9B;
-    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    background-color: #f7f6fb;
     `
 
 const Wrapper = styled.div`
@@ -75,7 +74,6 @@ const Wrapper = styled.div`
     gap: 2rem;
     border-radius: 1.5rem;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-    background-color: ${colorTokens.white[100]};
 `
 
 const Title = styled.h1`
