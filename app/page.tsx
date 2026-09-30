@@ -1,100 +1,80 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+import { useState } from 'react'
+import styled from '@emotion/styled'
 
-import styled from "@emotion/styled";
+import Header from './components/Header'
+import Hero from './components/Hero'
+import PaletteSection from './components/PaletteSection'
+import ExportSection from './components/ExportSection'
+import Footer from './components/Footer'
 
-import ToneCard from "./components/ToneCard"
-import ColorInput from "./components/ColorInput";
-import ExportPanel from "./components/ExportPanel";
-
-import { generateColorScale } from "@/lib/colorMath";
-import { colorTokens } from "@/lib/tokens"
+import { media } from '@/lib/breakpoints'
+import { generateColorScale } from '@/lib/colorMath'
 
 export default function Home() {
-  // 1. Estado
-  const [baseHex, setBaseHex] = useState("0066CC");
-  const [colorName, setColorName] = useState("primary");
+  const [baseHex, setBaseHex] = useState('6A4CDE')
+  const [colorName, setColorName] = useState('primary')
+  const scale = generateColorScale(baseHex)
 
-  // 2. Derivada
-  const scale = generateColorScale(baseHex);
-  
-  // 3. JSX
   return (
     <Root>
-        <Wrapper>
-        <Title>Color Palette Generator</Title>
-            <ControlsWrapper>
-                {/* Input para cambiar el color */}
-                <ColorInput 
-                    value={baseHex}
-                    onChange={setBaseHex}
-                />
+      <Wrapper>
+        <Header />
 
-                {/* Panel de exportación */}
-                <ExportPanel 
-                    scale={scale}
-                    colorName={colorName}
-                    onColorNameChange={setColorName}  
-                />
-            </ControlsWrapper>
+        <Layout>
+          <Hero value={baseHex} onChange={setBaseHex} />
 
-            {/* Map de la escala */}
-            <ScaleWrapper>
-                {scale.map((item) => (
-                <ToneCard 
-                    key={item.tone}
-                    hex={item.hex}
-                    tone={item.tone}
-                    />
-                ))}
-            </ScaleWrapper>
-        </Wrapper>
+          <RightColumn>
+            <PaletteSection scale={scale} colorName={colorName} />
+            <ExportSection scale={scale} colorName={colorName} onChange={setColorName} />
+          </RightColumn>
+        </Layout>
+        <Footer />
+      </Wrapper>
     </Root>
-  );
+  )
 }
 
 const Root = styled.main`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 1.5rem;
-    background-color: #f7f6fb;
-    `
+  display: flex;
+  min-width: 0;
+  justify-content: center;
+  background-color: #f7f6fb;
+`
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 1.5rem;
-    padding-block: 1.5rem 2.5rem;
-    padding-inline: 1rem;
-    gap: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  min-width: 0;
+  max-width: 82.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 3rem;
+
+  ${media.tablet} {
+    padding: 2.5rem;
+    gap: 4.5rem;
+  }
 `
 
-const Title = styled.h1`
-    font-family: 'Cherry Bomb One', sans-serif;
-    font-size: 3rem;
-    text-align: center;
-    color: ${colorTokens.gray[700]};
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+  gap: 2rem;
+
+  ${media.desktop} {
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    align-items: center;
+    gap: 5rem;
+  }
 `
 
-const ControlsWrapper = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    padding-block: 1rem;
-`
-
-const ScaleWrapper = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: .5rem;
-    padding-top: 2rem;
-    border-top: 1px solid ${colorTokens.gray[300]};
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1.25rem;
 `
