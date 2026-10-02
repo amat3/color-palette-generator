@@ -61,12 +61,12 @@ const Wrapper = styled.div`
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   min-width: 0;
   gap: 2rem;
 
   ${media.desktop} {
-    grid-template-columns: minmax(280px, 380px) 1fr;
+    grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
     align-items: center;
     gap: 5rem;
   }

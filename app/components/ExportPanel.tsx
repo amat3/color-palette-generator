@@ -124,6 +124,7 @@ const InputWrapper = styled.label`
 
 const TextInput = styled.input`
   width: 100%;
+  min-width: 0;
   font-size: 16px;
   font-weight: 700;
 

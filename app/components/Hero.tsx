@@ -31,6 +31,7 @@ function Hero({ value, onChange }: HeroProps) {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 1.25rem;
 `
 

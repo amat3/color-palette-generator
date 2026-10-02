@@ -70,6 +70,7 @@ function ColorInput({ value, onChange }: ColorInputProps) {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
   max-width: 27rem;
   padding: 1rem;
   gap: 0.75rem;
@@ -110,6 +111,7 @@ const TextWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 0;
   gap: 2px;
 `
 
@@ -145,6 +147,8 @@ const HexText = styled.div`
 `
 
 const TextInput = styled.input`
+  width: 100%;
+  min-width: 0;
   font-size: 1.25rem;
   font-weight: 900;
   letter-spacing: -0.025em;
