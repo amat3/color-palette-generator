@@ -92,6 +92,7 @@ function ExportPanel({ scale, colorName, onColorNameChange }: ExportPanelProps) 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 0.75rem;
 `
 

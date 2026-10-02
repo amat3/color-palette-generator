@@ -56,6 +56,8 @@ const SubtitleRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
 `
 
 const PaletteSpan = styled.div`
@@ -84,21 +86,20 @@ const PaletteSubtitle = styled.p`
 
 const ScaleWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
   min-width: 0;
   padding: 0.5rem;
-  border-radius: 30px;
   background-color: #fff;
   border: 1px solid #e7e3f0;
   border-radius: 28px;
 
   ${media.tablet} {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
   }
 
   ${media.desktop} {
-    grid-template-columns: repeat(6, minmax(90px, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 `
 

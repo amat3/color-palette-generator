@@ -13,10 +13,11 @@ export function RootProvider({ children }: { children: React.ReactNode }) {
             box-sizing: border-box;
           }
           html,
-          body,
-          #__next {
+          body {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
+            background-color: #f7f6fb;
+            overflow-x: clip;
           }
         `}
       />

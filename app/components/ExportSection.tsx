@@ -25,6 +25,7 @@ function ExportSection({ scale, colorName, onChange }: ExportSectionProps) {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
   padding: 1rem;
   gap: 0.75rem;
   background-color: #fff;

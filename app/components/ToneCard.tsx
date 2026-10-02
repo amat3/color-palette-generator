@@ -26,6 +26,8 @@ const ColorWrapper = styled.div<{ $bgColor: string; $textColor: string }>`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
   min-height: 8rem;
   padding: 1rem;
   border-radius: 22px;
@@ -41,18 +43,46 @@ const ColorWrapper = styled.div<{ $bgColor: string; $textColor: string }>`
   ${media.tablet} {
     min-height: 10rem;
   }
+
+  ${media.desktop} {
+    min-height: 8rem;
+    padding: 0.75rem;
+    border-radius: 18px;
+  }
+
+  ${media.wide} {
+    min-height: 10rem;
+    padding: 1rem;
+    border-radius: 22px;
+  }
 `
 
 const ColorName = styled.p`
   font-size: 1rem;
   line-height: 1.5;
   opacity: 80%;
+
+  ${media.desktop} {
+    font-size: 0.8125rem;
+  }
+
+  ${media.wide} {
+    font-size: 1rem;
+  }
 `
 
 const Hex = styled.p`
   font-size: 0.875rem;
   line-height: 1.25;
   text-transform: uppercase;
+
+  ${media.desktop} {
+    font-size: 0.75rem;
+  }
+
+  ${media.wide} {
+    font-size: 0.875rem;
+  }
 `
 
 export default ToneCard
